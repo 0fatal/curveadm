@@ -134,6 +134,10 @@ const (
 
 	// website
 	KEY_WEBSITE_STATUS = "WEBSITE_STATUS"
+
+	// install
+	KEY_INSTALL_PATH      = "INSTALL_PATH"
+	KEY_INSTALL_CONF_PATH = "INSTALL_CONF_PATH"
 )
 
 // others

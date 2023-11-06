@@ -31,6 +31,7 @@ import (
 	"github.com/opencurve/curveadm/internal/task/task/checker"
 	comm "github.com/opencurve/curveadm/internal/task/task/common"
 	"github.com/opencurve/curveadm/internal/task/task/fs"
+	"github.com/opencurve/curveadm/internal/task/task/install"
 	"github.com/opencurve/curveadm/internal/task/task/monitor"
 	pg "github.com/opencurve/curveadm/internal/task/task/playground"
 	"github.com/opencurve/curveadm/internal/task/task/website"
@@ -84,6 +85,7 @@ const (
 	GET_CLIENT_STATUS
 	INSTALL_CLIENT
 	UNINSTALL_CLIENT
+	INSTALL_TOOL
 
 	// bs
 	FORMAT_CHUNKFILE_POOL
@@ -260,6 +262,8 @@ func (p *Playbook) createTasks(step *PlaybookStep) (*tasks.Tasks, error) {
 			t, err = comm.NewInstallClientTask(curveadm, config.GetCC(i))
 		case UNINSTALL_CLIENT:
 			t, err = comm.NewUninstallClientTask(curveadm, nil)
+		case INSTALL_TOOL:
+			t, err = install.NewInstallToolTask(curveadm, config.GetDC(i))
 		// bs
 		case FORMAT_CHUNKFILE_POOL:
 			t, err = bs.NewFormatChunkfilePoolTask(curveadm, config.GetFC(i))
